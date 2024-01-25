@@ -26,5 +26,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: chmod +x ${{ github.action_path }}/sync.sh
+      shell: bash
+      
     - run: ${{ github.action_path }}/sync.sh "${{ inputs.spacename }}" "${{ inputs.project_key }}" "${{ inputs.auth_type }}" "${{ inputs.username }}" "${{ inputs.password }}" "${{ inputs.repository }}"
       shell: bash
