@@ -1,0 +1,30 @@
+name: 'Mirror to BitBucket GitHub Action'
+description: 'Mirrors a GitHub Git repository to BitBucket'
+branding:
+  icon: upload-cloud
+  color: blue
+inputs:
+  username:
+    required: true
+    default: ${{ github.actor }}
+  password:
+    required: true
+    default: ${{ github.actor }}
+  repository:
+    required: true
+    default: ${{ github.event.repository.name }}
+  spacename:
+    required: true
+    default: ${{ github.actor }}
+  project_key:
+    required: true
+    default: ${{ github.actor }}
+  auth_type:
+    required: true
+    default: ${{ github.actor }}
+
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/fillbucket.sh "${{ inputs.spacename }}" "${{ inputs.project_key }}" "${{ inputs.auth_type }}" "${{ inputs.username }}" "${{ inputs.password }}" "${{ inputs.repository }}"
+      shell: bash
