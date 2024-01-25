@@ -14,10 +14,10 @@ BBC_AUTH_PASS="${5:-${APP}}"                # BitBucket authentication pass: tok
 BBC_REPO_NAME="${6:-test_sync_jp}"          # BitBucket repository name
 
 # Generate cURL common parameters
-if [[ "${BBC_AUTH_TYPE}" -eq "PAT" ]]; then
+if [[ "${BBC_AUTH_TYPE}" == "PAT" ]]; then
     echo "INFO: Authentication method set: Access token"
     CURL_OPTS=(--silent --header "Authorization: Bearer ${BBC_AUTH_PASS}" --header "Accept: application/json" --header "Content-Type: application/json")
-elif [[ "${BBC_AUTH_TYPE}" -eq "APP" ]]; then
+elif [[ "${BBC_AUTH_TYPE}" == "APP" ]]; then
     echo "INFO: Authentication method set: HTTP basic auth"
     CURL_OPTS=(--silent -u "${BBC_AUTH_USER}:${BBC_AUTH_PASS}" --header "Accept: application/json" --header "Content-Type: application/json")
 else
