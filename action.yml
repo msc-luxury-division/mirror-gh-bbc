@@ -26,5 +26,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/fillbucket.sh "${{ inputs.spacename }}" "${{ inputs.project_key }}" "${{ inputs.auth_type }}" "${{ inputs.username }}" "${{ inputs.password }}" "${{ inputs.repository }}"
+    - run: ${{ github.action_path }}/sync.sh "${{ inputs.spacename }}" "${{ inputs.project_key }}" "${{ inputs.auth_type }}" "${{ inputs.username }}" "${{ inputs.password }}" "${{ inputs.repository }}"
       shell: bash
