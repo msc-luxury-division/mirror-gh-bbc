@@ -16,9 +16,11 @@ BBC_REPO_NAME="${6:-test_sync_jp}"          # BitBucket repository name
 # Generate cURL common parameters
 if [[ "${BBC_AUTH_TYPE}" == "PAT" ]]; then
     echo "INFO: Authentication method set: Access token"
+    PUSH_LINK=${BBC_AUTH_PASS}
     CURL_OPTS=(--silent --header "Authorization: Bearer ${BBC_AUTH_PASS}" --header "Accept: application/json" --header "Content-Type: application/json")
 elif [[ "${BBC_AUTH_TYPE}" == "APP" ]]; then
     echo "INFO: Authentication method set: HTTP basic auth"
+    PUSH_LINK="${BBC_AUTH_USER}:${BBC_AUTH_PASS}"
     CURL_OPTS=(--silent -u "${BBC_AUTH_USER}:${BBC_AUTH_PASS}" --header "Accept: application/json" --header "Content-Type: application/json")
 else
     echo "ERROR: Invalid BitBucket authentication type: ${BBC_AUTH_TYPE} (must be 'PAT' or 'APP')"
@@ -77,6 +79,7 @@ function create_repository() {
 
 function sync_repository() {
     echo "INFO: Sync BitBucket repository: ${BBC_WORKSPACE}/${BBC_REPO_NAME}"
+    git push https://"${PUSH_LINK}"@bitbucket.org/${BBC_WORKSPACE}/${BBC_REPO_NAME}.git --all --force
     return 0
 }
 
