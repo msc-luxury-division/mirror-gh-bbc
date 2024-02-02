@@ -12,6 +12,7 @@ BBC_AUTH_TYPE="${3:-APP}"                   # BitBucket authentication type: 'PA
 BBC_AUTH_USER="${4:-ej-svc-bitbucket-mule}" # BitBucket authentication user: 'x-auth-token' or user name
 BBC_AUTH_PASS="${5:-${APP}}"                # BitBucket authentication pass: token, user password or app password
 BBC_REPO_NAME="${6:-test_sync_jp}"          # BitBucket repository name
+BBC_REPO_NAME=${BBC_REPO_NAME,,}            # lowercase
 
 # Generate cURL common parameters
 if [[ "${BBC_AUTH_TYPE}" == "PAT" ]]; then
