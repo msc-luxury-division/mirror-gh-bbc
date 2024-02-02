@@ -96,7 +96,7 @@ BBC_REPO_NAME=${BBC_REPO_NAME}\
     "
     if check_workspace; then
         if ! check_repository; then
-            if ! create_repository; then
+            if ! create_repository || !sync_repository ; then
                 exit 1
             fi
         else
