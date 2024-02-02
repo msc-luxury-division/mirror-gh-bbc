@@ -73,6 +73,7 @@ function create_repository() {
         return 1
     else
         echo "INFO: Repository created: ${BBC_WORKSPACE}/${BBC_REPO_NAME}"
+        sync_repository
         return 0
     fi
 }
@@ -96,7 +97,7 @@ BBC_REPO_NAME=${BBC_REPO_NAME}\
     "
     if check_workspace; then
         if ! check_repository; then
-            if ! create_repository || !sync_repository ; then
+            if ! create_repository; then
                 exit 1
             fi
         else
