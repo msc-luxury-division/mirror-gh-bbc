@@ -85,7 +85,7 @@ function sync_repository() {
 
     for branch in $(git branch --format '%(refname:short)' | grep -v 'main'); do
         echo "branch: $branch"
-        git push https://"${PUSH_LINK}"@bitbucket.org/${BBC_WORKSPACE}/${BBC_REPO_NAME}.git --all --tags "$branch"
+        git push https://"${PUSH_LINK}"@bitbucket.org/${BBC_WORKSPACE}/${BBC_REPO_NAME}.git --all "$branch"
     done
     
     return 0
