@@ -83,12 +83,10 @@ function sync_repository() {
     echo "INFO: Sync BitBucket repository: ${BBC_WORKSPACE}/${BBC_REPO_NAME}"
 
     git fetch --all
-    git push https://"${PUSH_LINK}"@bitbucket.org/${BBC_WORKSPACE}/${BBC_REPO_NAME}.git --all
-    # echo $(git branch --format '%(refname:short)')
-    # for branch in $(git branch --format '%(refname:short)'); do
-    #     echo "branch: $branch"
-    #     git push https://"${PUSH_LINK}"@bitbucket.org/${BBC_WORKSPACE}/${BBC_REPO_NAME}.git "$branch"
-    # done
+    for branch in $(git branch --format '%(refname:short)'); do
+        echo "branch: $branch"
+        git push https://"${PUSH_LINK}"@bitbucket.org/${BBC_WORKSPACE}/${BBC_REPO_NAME}.git "$branch:$branch"
+    done
     
     return 0
 }
